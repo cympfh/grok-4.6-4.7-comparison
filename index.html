@@ -181,6 +181,19 @@
   th:first-child, td:first-child, th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3) { text-align: left; }
   thead th { color: var(--text-muted); font-weight: 600; }
   tbody tr:hover { background: var(--gridline); }
+
+  .toplinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 10px 0 0;
+    font-size: 13px;
+  }
+  .toplinks a {
+    color: var(--series-1);
+    text-decoration: none;
+  }
+  .toplinks a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -189,6 +202,11 @@
   <div>
     <h1>Grok 4.6 / 4.7 ベンチマーク結果</h1>
     <p class="subtitle">reasoning_effort = high / xhigh — スコア・レイテンシ・トークン・コスト比較</p>
+    <p class="toplinks">
+      <a href="https://github.com/cympfh/grok-4.6-4.7-comparison">GitHub レポジトリ</a>
+      <a href="https://github.com/cympfh/grok-4.6-4.7-comparison/tree/main/benchmarks">生データセット</a>
+      <a href="https://github.com/cympfh/grok-4.6-4.7-comparison/blob/main/results.json">結果 JSON</a>
+    </p>
   </div>
   <button type="button" class="theme-toggle" id="theme" aria-label="ダークモード切替" title="ダークモード切替">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
