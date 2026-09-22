@@ -16,13 +16,12 @@ Grok 4.6 と Grok 4.7 の性能・速度・コストを、`reasoning_effort` の
 `benchmarks/` 以下のデータセットを使用する。詳細は [benchmarks/README.md](benchmarks/README.md) を参照。
 
 - `translator-ja-en.jsonl` — 日本語→英語 翻訳（10サンプル、単語集合 F1）
-- `arithmetic.jsonl` — 多段階四則・分数・入れ子括弧・大きな数（17サンプル、数値誤差 1e-6；1回難易度引き上げ後）
-- `differential.jsonl` — 微分方程式 / 微積分（14サンプル、数値または正規化文字列；1回難易度引き上げ後）
-- `terminal.jsonl` — 安全な bash スクリプト生成（13サンプル、一時ディレクトリで実行してファイル/stdout を検査；1回難易度引き上げ後）
+- `arithmetic.jsonl` — 多段階四則・分数・入れ子括弧・大きな数（17サンプル、数値誤差 1e-6）
+- `differential.jsonl` — 微分方程式 / 微積分（14サンプル、数値または正規化文字列）
+- `terminal.jsonl` — 安全な bash スクリプト生成（16サンプル、一時ディレクトリで実行してファイル/stdout/symlink/FIFO/zip を検査）
 
 各サンプルについてレイテンシ、入出力・reasoning トークン、USD コスト、正解スコアを記録し、`(データセット, モデル, reasoning_effort)` ごとに平均を集計する。
 
-全コンボの平均スコアが 0.95 以上のデータセットは、より難しいサンプルを 1 ラウンドだけ追加して再実行する。
 
 ## コスト計算
 
@@ -75,7 +74,6 @@ uv run main.py --limit 3
 | `--limit` | 各データセットから使うサンプル数 | 制限なし（全件） |
 | `--concurrency` | 同時リクエスト数 | `3` |
 | `--output` | 結果を JSON で保存するパス | 保存しない |
-| `--no-escalate` | 高スコア時の難易度引き上げをしない | オフ |
 
 ## ビューワ
 

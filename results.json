@@ -5,22 +5,6 @@
       "output": 6.0
     },
     "reasoning_billing": "total != prompt + completion; reasoning_tokens billed as extra output tokens (not folded into completion_tokens)",
-    "escalations": [
-      {
-        "dataset": "arithmetic",
-        "from_n": 12,
-        "to_n": 17,
-        "added": 5,
-        "reason": "all combos avg_score >= 0.95"
-      },
-      {
-        "dataset": "differential",
-        "from_n": 10,
-        "to_n": 14,
-        "added": 4,
-        "reason": "all combos avg_score == 1.0 on successful samples"
-      }
-    ],
     "models": [
       "grok-4.6",
       "grok-4.7"
