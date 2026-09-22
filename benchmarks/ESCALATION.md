@@ -17,6 +17,4 @@ Final published results use the escalated 17-sample set.
 
 Initial 10 samples scored avg_score 1.0 on every combo (some API capacity errors on individual samples). Added 4 harder samples (total 14).
 
-## terminal (one round)
-
-Initial 10 samples scored avg_score 1.0 on every combo (some API capacity errors). Added 3 harder samples (total 13).
+Terminal was not escalated; the suite is the 16-sample set described in README.md (including zip / ln / mkfifo).

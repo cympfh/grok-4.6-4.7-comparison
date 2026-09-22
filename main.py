@@ -112,38 +112,6 @@ ESCALATION_SAMPLES: dict[str, list[dict]] = {
             "expected": "2",
         },
     ],
-    "terminal": [
-        {
-            "id": "files-01-20",
-            "input": (
-                "Create files named n01.txt through n20.txt. nNN.txt must contain only the integer N "
-                "(optional trailing newline). Output ONLY a bash script inside a ```bash fenced block."
-            ),
-            "check": {"files": {f"n{i:02d}.txt": str(i) for i in range(1, 21)}},
-        },
-        {
-            "id": "pipeline-uniq",
-            "input": (
-                "Create raw.txt with lines: apple, banana, apple, cherry, banana, apple "
-                "(one word per line). Write the unique words sorted alphabetically to unique.txt. "
-                "Output ONLY a bash script inside a ```bash fenced block."
-            ),
-            "check": {
-                "files": {
-                    "raw.txt": "apple\nbanana\napple\ncherry\nbanana\napple",
-                    "unique.txt": "apple\nbanana\ncherry",
-                }
-            },
-        },
-        {
-            "id": "bc-fraction",
-            "input": (
-                "Using bc or python3, compute 22/7 rounded to 4 decimal places and write it to piapprox.txt "
-                "(exactly 3.1429). Output ONLY a bash script inside a ```bash fenced block."
-            ),
-            "check": {"files": {"piapprox.txt": "3.1429"}},
-        },
-    ],
 }
 
 FORBIDDEN_SCRIPT_PATTERNS = [
@@ -326,7 +294,21 @@ def _norm_text(s: str) -> str:
     return (s or "").replace("\r\n", "\n").strip()
 
 
+def _safe_under(tmp_path: Path, rel: str) -> Path | None:
+    if ".." in Path(rel).parts:
+        return None
+    target = (tmp_path / rel)
+    try:
+        target.resolve().relative_to(tmp_path.resolve())
+    except ValueError:
+        return None
+    return target
+
+
 def score_terminal(output: str, sample: dict) -> float:
+    import stat
+    import zipfile
+
     script = extract_bash_script(output)
     if not script:
         return 0.0
@@ -337,6 +319,9 @@ def score_terminal(output: str, sample: dict) -> float:
     expected_files: dict[str, str] = check.get("files") or {}
     expected_stdout = check.get("stdout")
     absent = check.get("absent") or []
+    symlinks: dict[str, str] = check.get("symlinks") or {}
+    fifos = check.get("fifos") or []
+    zip_members: dict[str, dict[str, str]] = check.get("zip_members") or {}
 
     with tempfile.TemporaryDirectory(prefix="gcmp-term-") as tmp:
         script_path = Path(tmp) / "script.sh"
@@ -372,17 +357,39 @@ def score_terminal(output: str, sample: dict) -> float:
 
         tmp_path = Path(tmp)
         for rel, want in expected_files.items():
-            if ".." in Path(rel).parts:
-                return 0.0
-            target = (tmp_path / rel).resolve()
-            try:
-                target.relative_to(tmp_path.resolve())
-            except ValueError:
-                return 0.0
-            if not target.is_file():
+            target = _safe_under(tmp_path, rel)
+            if target is None or not target.is_file():
                 return 0.0
             got = target.read_text(encoding="utf-8", errors="replace")
             if _norm_text(got) != _norm_text(want):
+                return 0.0
+        for rel, link_target in symlinks.items():
+            target = _safe_under(tmp_path, rel)
+            if target is None or not target.is_symlink():
+                return 0.0
+            if os.readlink(target) != link_target:
+                return 0.0
+        for rel in fifos:
+            target = _safe_under(tmp_path, rel)
+            if target is None or not target.exists():
+                return 0.0
+            mode = target.lstat().st_mode
+            if not stat.S_ISFIFO(mode):
+                return 0.0
+        for archive, members in zip_members.items():
+            zpath = _safe_under(tmp_path, archive)
+            if zpath is None or not zpath.is_file():
+                return 0.0
+            try:
+                with zipfile.ZipFile(zpath) as zf:
+                    names = set(zf.namelist())
+                    for member, want in members.items():
+                        if member not in names:
+                            return 0.0
+                        got = zf.read(member).decode("utf-8", errors="replace")
+                        if _norm_text(got) != _norm_text(want):
+                            return 0.0
+            except zipfile.BadZipFile:
                 return 0.0
         for rel in absent:
             if (tmp_path / rel).exists():

@@ -19,13 +19,6 @@
         "to_n": 14,
         "added": 4,
         "reason": "all combos avg_score == 1.0 on successful samples"
-      },
-      {
-        "dataset": "terminal",
-        "from_n": 10,
-        "to_n": 13,
-        "added": 3,
-        "reason": "all combos avg_score == 1.0 on successful samples"
       }
     ],
     "models": [
@@ -36,7 +29,7 @@
       "high",
       "xhigh"
     ],
-    "generated_at_jst": "2026-09-22 11:02:42 JST"
+    "generated_at_jst": "2026-09-22 12:50:11 JST"
   },
   "rows": [
     {
@@ -251,73 +244,69 @@
       "dataset": "terminal",
       "model": "grok-4.6",
       "effort": "high",
-      "n": 13,
-      "errors": 1,
-      "error_examples": [
-        "AioRpcError: <AioRpcError of RPC that terminated with:\n\tstatus = StatusCode.RESOURCE_EXHAUSTED\n\tdetails = \"The model is currently at capacity due to high demand. Please try again in a few minutes, or use a higher service tier for priority processing: https://docs.x.ai/developers/advanced-api-usage/priority-processing\"\n\tdebug_error_string = \"RESOURCE_EXHAUSTED:The model is currently at capacity due to high demand. Please try again in a few minutes, or use a higher service tier for priority processing: https://docs.x.ai/developers/advanced-api-usage/priority-processing\"\n>"
-      ],
-      "avg_latency": 6.177203880751525,
+      "n": 16,
+      "errors": 0,
+      "error_examples": [],
+      "avg_latency": 6.3260739504949015,
       "avg_score": 1.0,
-      "avg_prompt_tokens": 686.1666666666666,
-      "avg_completion_tokens": 29.583333333333332,
-      "avg_reasoning_tokens": 348.5833333333333,
-      "avg_total_tokens": 1064.3333333333333,
-      "avg_tokens": 1064.3333333333333,
-      "total_cost_usd": 0.043696,
-      "avg_cost_usd": 0.0036413333333333332
+      "avg_prompt_tokens": 685.625,
+      "avg_completion_tokens": 27.5625,
+      "avg_reasoning_tokens": 367.0625,
+      "avg_total_tokens": 1080.25,
+      "avg_tokens": 1080.25,
+      "total_cost_usd": 0.059824,
+      "avg_cost_usd": 0.003739
     },
     {
       "dataset": "terminal",
       "model": "grok-4.6",
       "effort": "xhigh",
-      "n": 13,
-      "errors": 1,
-      "error_examples": [
-        "AioRpcError: <AioRpcError of RPC that terminated with:\n\tstatus = StatusCode.RESOURCE_EXHAUSTED\n\tdetails = \"The model is currently at capacity due to high demand. Please try again in a few minutes, or use a higher service tier for priority processing: https://docs.x.ai/developers/advanced-api-usage/priority-processing\"\n\tdebug_error_string = \"RESOURCE_EXHAUSTED:The model is currently at capacity due to high demand. Please try again in a few minutes, or use a higher service tier for priority processing: https://docs.x.ai/developers/advanced-api-usage/priority-processing\"\n>"
-      ],
-      "avg_latency": 5.752886714081494,
-      "avg_score": 1.0,
-      "avg_prompt_tokens": 687.1666666666666,
-      "avg_completion_tokens": 32.333333333333336,
-      "avg_reasoning_tokens": 333.1666666666667,
-      "avg_total_tokens": 1052.6666666666667,
-      "avg_tokens": 1052.6666666666667,
-      "total_cost_usd": 0.042808,
-      "avg_cost_usd": 0.0035673333333333334
+      "n": 16,
+      "errors": 0,
+      "error_examples": [],
+      "avg_latency": 6.003748333621843,
+      "avg_score": 0.9375,
+      "avg_prompt_tokens": 686.625,
+      "avg_completion_tokens": 28.9375,
+      "avg_reasoning_tokens": 355.6875,
+      "avg_total_tokens": 1071.25,
+      "avg_tokens": 1071.25,
+      "total_cost_usd": 0.058896000000000004,
+      "avg_cost_usd": 0.0036810000000000002
     },
     {
       "dataset": "terminal",
       "model": "grok-4.7",
       "effort": "high",
-      "n": 13,
+      "n": 16,
       "errors": 0,
       "error_examples": [],
-      "avg_latency": 4.83574814568811,
+      "avg_latency": 2.8995604667525186,
       "avg_score": 1.0,
-      "avg_prompt_tokens": 1292.5384615384614,
-      "avg_completion_tokens": 33.30769230769231,
-      "avg_reasoning_tokens": 262.6923076923077,
-      "avg_total_tokens": 1588.5384615384614,
-      "avg_tokens": 1588.5384615384614,
-      "total_cost_usd": 0.056694,
-      "avg_cost_usd": 0.004361076923076923
+      "avg_prompt_tokens": 1291.625,
+      "avg_completion_tokens": 30.5625,
+      "avg_reasoning_tokens": 167.5625,
+      "avg_total_tokens": 1489.75,
+      "avg_tokens": 1489.75,
+      "total_cost_usd": 0.060352,
+      "avg_cost_usd": 0.003772
     },
     {
       "dataset": "terminal",
       "model": "grok-4.7",
       "effort": "xhigh",
-      "n": 13,
+      "n": 16,
       "errors": 0,
       "error_examples": [],
-      "avg_latency": 3.3998988969945527,
+      "avg_latency": 3.139044615876628,
       "avg_score": 1.0,
-      "avg_prompt_tokens": 1293.5384615384614,
-      "avg_completion_tokens": 31.53846153846154,
-      "avg_reasoning_tokens": 183.92307692307693,
-      "avg_total_tokens": 1509,
-      "avg_tokens": 1509,
-      "total_cost_usd": 0.050438,
-      "avg_cost_usd": 0.003879846153846154
+      "avg_prompt_tokens": 1292.625,
+      "avg_completion_tokens": 29.625,
+      "avg_reasoning_tokens": 197.8125,
+      "avg_total_tokens": 1520.0625,
+      "avg_tokens": 1520.0625,
+      "total_cost_usd": 0.063198,
+      "avg_cost_usd": 0.003949875
     }
   ]
 }

@@ -32,15 +32,17 @@
 
 ## terminal.jsonl
 
-安全なシェル操作。13 サンプル（初期10 + 難易度引き上げ3）。
+安全なシェル操作。16 サンプル。連番ファイル作成、計算結果の書き出し、ソート、連結、リネーム、サブディレクトリ、`seq`、python / awk、単語カウントに加え、`zip` でアーカイブ作成、`ln` でシンボリックリンク、`mkfifo` で名前付きパイプを含む。
 
 - `input`: 空の一時ディレクトリで実行する bash スクリプトだけを ```bash ... ``` で出力するよう求める指示
 - `check.files`: 作成されるべき相対パスと内容
 - `check.stdout`: 標準出力の期待値（任意）
 - `check.absent`: 存在してはいけない相対パス（任意）
-- 採点: モデル出力からスクリプトを抽出し、禁止パターン（`sudo`, `curl`, `wget`, `ssh`, `rm -rf /` など、一時ディレクトリ外への書き込み）があれば 0.0。禁止がなければ空の一時ディレクトリで `bash` を timeout 10s・ネットワークなしで実行し、期待ファイル/stdout が一致すれば 1.0、否则 0.0。
-
+- `check.symlinks`: シンボリックリンクの相対パスとリンク先
+- `check.fifos`: FIFO であるべき相対パス
+- `check.zip_members`: zip アーカイブ内のメンバー名と内容
+- 採点: モデル出力からスクリプトを抽出し、禁止パターン（`sudo`, `curl`, `wget`, `ssh`, `rm -rf /` など、一時ディレクトリ外への書き込み）があれば 0.0。禁止がなければ空の一時ディレクトリで `bash` を timeout 10s・ネットワークなしで実行し、期待ファイル / stdout / symlink / FIFO / zip メンバーが一致すれば 1.0、そうでなければ 0.0。
 
 ## Escalation
 
-See [ESCALATION.md](ESCALATION.md). Arithmetic was escalated once (12→17 samples).
+See [ESCALATION.md](ESCALATION.md). Arithmetic and differential were escalated once during evaluation. The terminal set is the 16-sample suite above.
