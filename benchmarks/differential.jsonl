@@ -1,0 +1,14 @@
+{"input": "Solve the IVP y' = 2y, y(0) = 1. Evaluate y(ln 2). Output only the number.", "expected": "4"}
+{"input": "dy/dx = 3x^2, y(0) = 1. Find y(2). Output only the number.", "expected": "9"}
+{"input": "y'' + y = 0, y(0) = 0, y'(0) = 1. Find y(pi/2). Output only the number.", "expected": "1"}
+{"input": "Solve y' = 6x, y(1) = 4. Find y(2). Output only the number.", "expected": "13"}
+{"input": "y'' = 2, y(0) = 0, y'(0) = 0. Find y(3). Output only the number.", "expected": "9"}
+{"input": "Compute d/dx (x^3 - 4x + 7) at x = 3. Output only the number.", "expected": "23"}
+{"input": "Evaluate the definite integral of (2x + 1) from 0 to 4. Output only the number.", "expected": "20"}
+{"input": "y' = y/x for x > 0, y(1) = 5. Find y(3). Output only the number.", "expected": "15"}
+{"input": "The solution of y' = 4y, y(0) = 1 is y = e^{kx}. What is k? Output only the number.", "expected": "4"}
+{"input": "Evaluate the definite integral of (1/x) from 1 to e. Output only the number.", "expected": "1"}
+{"input": "y''' = 0, y(0)=1, y'(0)=2, y''(0)=6. Find y(1). Output only the number.", "expected": "6"}
+{"input": "Evaluate the definite integral of sin(x) from 0 to pi/2. Output only the number.", "expected": "1"}
+{"input": "y' = -y, y(0)=8. Find y(ln 2). Output only the number.", "expected": "4"}
+{"input": "d/dx (e^{2x}) at x=0. Output only the number.", "expected": "2"}

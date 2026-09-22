@@ -1,0 +1,10 @@
+{"input": "今日は晴れです。", "expected": "It is sunny today."}
+{"input": "私は猫が好きです。", "expected": "I like cats."}
+{"input": "駅までどのくらいかかりますか?", "expected": "How long does it take to get to the station?"}
+{"input": "この本はとても面白いです。", "expected": "This book is very interesting."}
+{"input": "明日会議があります。", "expected": "There is a meeting tomorrow."}
+{"input": "彼女は日本語を上手に話します。", "expected": "She speaks Japanese well."}
+{"input": "この店のラーメンはおいしいです。", "expected": "The ramen at this restaurant is delicious."}
+{"input": "コーヒーを一杯ください。", "expected": "Please give me a cup of coffee."}
+{"input": "週末に映画を見に行きました。", "expected": "I went to see a movie on the weekend."}
+{"input": "手伝ってくれてありがとう。", "expected": "Thank you for helping me."}

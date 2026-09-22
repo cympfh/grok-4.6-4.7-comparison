@@ -1,0 +1,10 @@
+[project]
+name = "grok-4.6-4.7-comparison"
+version = "0.1.0"
+description = "Grok 4.6 vs Grok 4.7 benchmark comparison (high / xhigh)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "python-dotenv>=1.2.2",
+    "xai-sdk>=1.17.0",
+]
