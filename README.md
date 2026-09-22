@@ -34,6 +34,8 @@ Grok 4.6 と Grok 4.7 の性能・速度・コストを、`reasoning_effort` の
 
 コンボごとに `avg_prompt_tokens`, `avg_completion_tokens`, `avg_reasoning_tokens`, `avg_total_tokens`, `total_cost_usd`, `avg_cost_usd` を記録する。
 
+同一の user メッセージでも `grok-4.7` の `prompt_tokens` は API 上およそ +600（`cached_prompt_text_tokens` も大きい）。合計トークンが高い主因は reasoning ではなく prompt。
+
 ## セットアップ
 
 ```bash
